@@ -18,30 +18,34 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Cronometro from "./Cronometro.vue";
-
+import Cronometro from './Cronometro.vue'
 export default defineComponent({
   name: "TemporizadorAlura",
-  components: { Cronometro },
-  data() {
+  emits: ['aoTemporizadorFinalizado'],
+  components: {
+    Cronometro
+  },
+  data () {
     return {
       tempoEmSegundos: 0,
       cronometro: 0,
       cronometroRodando: false
-    };
+    }
   },
   methods: {
-    iniciar() {
+    iniciar () {
       // começar a contagem
       // 1 seg = 1000 ms
-      this.cronometroRodando = true;
+      this.cronometroRodando = true
       this.cronometro = setInterval(() => {
-        this.tempoEmSegundos += 1;
-      }, 1000);
+        this.tempoEmSegundos += 1        
+      }, 1000)
     },
-    finalizar() {
-      this.cronometroRodando = false;
-      clearInterval(this.cronometro);
+    finalizar () {
+      this.cronometroRodando = false
+      clearInterval(this.cronometro)
+      this.$emit('aoTemporizadorFinalizado', this.tempoEmSegundos)
+      this.tempoEmSegundos = 0
     }
   }
 });
