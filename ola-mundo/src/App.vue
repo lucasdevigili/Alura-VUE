@@ -5,8 +5,6 @@
      </div>
      <div class="column is-three-quarter">
        <formulario />
-       <formulario />
-       <formulario />
      </div>
    </main>
 </template>
